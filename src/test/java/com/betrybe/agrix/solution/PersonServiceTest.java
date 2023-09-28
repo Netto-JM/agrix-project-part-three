@@ -1,9 +1,9 @@
 package com.betrybe.agrix.solution;
 
-import com.betrybe.agrix.ebytr.staff.entity.Person;
-import com.betrybe.agrix.ebytr.staff.exception.PersonNotFoundException;
-import com.betrybe.agrix.ebytr.staff.repository.PersonRepository;
-import com.betrybe.agrix.ebytr.staff.service.PersonService;
+import com.betrybe.agrix.models.entities.Person;
+import com.betrybe.agrix.services.exception.PersonNotFoundException;
+import com.betrybe.agrix.models.repositories.PersonRepository;
+import com.betrybe.agrix.services.PersonService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -53,7 +53,7 @@ public class PersonServiceTest {
 
   @Test
   @DisplayName("Should find a user by its ID")
-  public void testFindUserById() {
+  public void testFindUserById() throws PersonNotFoundException {
     Person myUser = personService.getPersonById(1L);
 
     Assertions.assertEquals(myUser.getId(), 1L);
@@ -63,7 +63,7 @@ public class PersonServiceTest {
 
   @Test
   @DisplayName("Should find a user by its username")
-  public void testFindUserByUsername() {
+  public void testFindUserByUsername() throws PersonNotFoundException {
     Person myUser = personService.getPersonByUsername("NettoJM");
 
     Assertions.assertEquals(myUser.getId(), 1L);

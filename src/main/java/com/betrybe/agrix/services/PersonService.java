@@ -1,8 +1,8 @@
-package com.betrybe.agrix.ebytr.staff.service;
+package com.betrybe.agrix.services;
 
-import com.betrybe.agrix.ebytr.staff.entity.Person;
-import com.betrybe.agrix.ebytr.staff.exception.PersonNotFoundException;
-import com.betrybe.agrix.ebytr.staff.repository.PersonRepository;
+import com.betrybe.agrix.models.entities.Person;
+import com.betrybe.agrix.models.repositories.PersonRepository;
+import com.betrybe.agrix.services.exception.PersonNotFoundException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class PersonService {
   /**
    * Returns a person for a given ID.
    */
-  public Person getPersonById(Long id) {
+  public Person getPersonById(Long id) throws PersonNotFoundException {
     Optional<Person> person = personRepository.findById(id);
 
     if (person.isEmpty()) {
@@ -37,7 +37,7 @@ public class PersonService {
   /**
    * Returns a person for a given username.
    */
-  public Person getPersonByUsername(String username) {
+  public Person getPersonByUsername(String username) throws PersonNotFoundException {
     Optional<Person> person = personRepository.findByUsername(username);
 
     if (person.isEmpty()) {
