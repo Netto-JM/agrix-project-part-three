@@ -7,7 +7,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultHandler;
 
 public class SimpleResultHandler implements ResultHandler {
-
   @Override
   public void handle(MvcResult result) throws Exception {
     MockHttpServletResponse response = result.getResponse();
