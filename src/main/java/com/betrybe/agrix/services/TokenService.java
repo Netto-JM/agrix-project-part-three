@@ -34,6 +34,21 @@ public class TokenService {
   }
 
   /**
+   * Validates the given token.
+   *
+   * @param token The token to validate.
+   * @return The username of the person that owns the token.
+   */
+  public String validateToken(String token) {
+    Algorithm algorithm = Algorithm.HMAC256(secret);
+    return JWT.require(algorithm)
+        .withIssuer("jmagrix")
+        .build()
+        .verify(token)
+        .getSubject();
+  }
+
+  /**
    * Generates an expiration date for the token.
    *
    * @return The expiration date.
