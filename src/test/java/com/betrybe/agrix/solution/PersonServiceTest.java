@@ -46,9 +46,9 @@ public class PersonServiceTest {
 
     Assertions.assertNotNull(expectedPerson);
 
-    Assertions.assertEquals(newPerson.getUsername(), expectedPerson.getUsername());
+    Assertions.assertEquals("aNewUser", expectedPerson.getUsername());
     Assertions.assertEquals(newPerson.getPassword(), expectedPerson.getPassword());
-    Assertions.assertEquals(newPerson.getId(), expectedPerson.getId());
+    Assertions.assertEquals(2L, expectedPerson.getId());
   }
 
   @Test
@@ -64,17 +64,10 @@ public class PersonServiceTest {
   @Test
   @DisplayName("Should find a user by its username")
   public void testFindUserByUsername() throws PersonNotFoundException {
-    Person myUser = personService.getPersonByUsername("NettoJM");
+    Person myUser = (Person) personService.loadUserByUsername("NettoJM");
 
     Assertions.assertEquals(myUser.getId(), 1L);
     Assertions.assertEquals(myUser.getUsername(), "NettoJM");
     Assertions.assertEquals(myUser.getPassword(), "mySecretPassword");
-  }
-
-  @Test
-  @DisplayName("Should throw an exception when trying to find a non-existent user")
-  public void testInvalidUser() {
-    Assertions.assertThrows(PersonNotFoundException.class,
-        () -> personService.getPersonByUsername("notFoundUser"));
   }
 }

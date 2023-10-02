@@ -1,5 +1,6 @@
 package com.betrybe.agrix.controllers.advice;
 
+import com.betrybe.agrix.services.exception.BadRequestException;
 import com.betrybe.agrix.services.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,21 @@ public class GlobalControllerAdvice {
   public ResponseEntity<String> handleNotFoundException(NotFoundException exception) {
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
+        .body(
+            exception.getMessage()
+        );
+  }
+
+  /**
+   * Exception handler for BadRequestException.
+   *
+   * @param exception The BadRequestException to handle.
+   * @return A ResponseEntity with a 400 status code and the exception message.
+   */
+  @ExceptionHandler(BadRequestException.class)
+  public ResponseEntity<String> handleBadRequestException(BadRequestException exception) {
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
         .body(
             exception.getMessage()
         );
