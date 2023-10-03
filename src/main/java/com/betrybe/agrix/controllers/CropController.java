@@ -5,7 +5,6 @@ import com.betrybe.agrix.controllers.dto.FertilizerDto;
 import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Fertilizer;
 import com.betrybe.agrix.services.CropService;
-import com.betrybe.agrix.services.FertilizerService;
 import com.betrybe.agrix.services.exception.CropNotFoundException;
 import com.betrybe.agrix.services.exception.FertilizerNotFoundException;
 import java.time.LocalDate;
@@ -31,12 +30,9 @@ public class CropController {
 
   private final CropService cropService;
 
-  private final FertilizerService fertilizerService;
-
   @Autowired
-  public CropController(CropService cropService, FertilizerService fertilizerService) {
+  public CropController(CropService cropService) {
     this.cropService = cropService;
-    this.fertilizerService = fertilizerService;
   }
 
   /**
