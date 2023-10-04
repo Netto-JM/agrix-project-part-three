@@ -94,12 +94,11 @@ public class CropController {
    * @throws CropNotFoundException If the crop with the specified ID is not found.
    */
   @GetMapping("/{cropId}")
-  public ResponseEntity<CropDto> getCropById(@PathVariable Long cropId)
+  public CropDto getCropById(@PathVariable Long cropId)
       throws CropNotFoundException {
     Optional<Crop> optionalCrop = cropService.getCropById(cropId);
 
-    return optionalCrop.map(crop -> ResponseEntity.ok(CropDto.fromEntity(crop)))
-        .orElseThrow(CropNotFoundException::new);
+    return optionalCrop.map(CropDto::fromEntity).orElseThrow(CropNotFoundException::new);
   }
 
   /**

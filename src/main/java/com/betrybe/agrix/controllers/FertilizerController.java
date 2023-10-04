@@ -52,11 +52,11 @@ public class FertilizerController {
    * @throws FertilizerNotFoundException If the fertilizer with the specified ID is not found.
    */
   @GetMapping("/{fertilizerId}")
-  public ResponseEntity<FertilizerDto> getFertilizerById(@PathVariable Long fertilizerId)
+  public FertilizerDto getFertilizerById(@PathVariable Long fertilizerId)
       throws FertilizerNotFoundException {
     Optional<Fertilizer> optionalFertilizer = fertilizerService.getFertilizerById(fertilizerId);
 
-    return optionalFertilizer.map(fert -> ResponseEntity.ok(FertilizerDto.fromEntity(fert)))
+    return optionalFertilizer.map(FertilizerDto::fromEntity)
         .orElseThrow(FertilizerNotFoundException::new);
   }
 

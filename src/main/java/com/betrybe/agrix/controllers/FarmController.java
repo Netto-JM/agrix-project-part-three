@@ -91,12 +91,11 @@ public class FarmController {
    * @throws FarmNotFoundException If the farm with the specified ID is not found.
    */
   @GetMapping("/{farmId}")
-  public ResponseEntity<FarmDto> getFarmById(@PathVariable Long farmId)
+  public FarmDto getFarmById(@PathVariable Long farmId)
       throws FarmNotFoundException {
     Optional<Farm> optionalFarm = farmService.getFarmById(farmId);
 
-    return optionalFarm.map(farm -> ResponseEntity.ok(FarmDto.fromEntity(farm)))
-        .orElseThrow(FarmNotFoundException::new);
+    return optionalFarm.map(FarmDto::fromEntity).orElseThrow(FarmNotFoundException::new);
   }
 
   /**

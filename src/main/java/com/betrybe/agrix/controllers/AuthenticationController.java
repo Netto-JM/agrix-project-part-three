@@ -40,7 +40,7 @@ public class AuthenticationController {
    * @return A ResponseEntity containing the authentication token.
    */
   @PostMapping("/login")
-  public ResponseEntity<TokenResponseDto> login(@RequestBody AuthenticationDto authenticationDto) {
+  public TokenResponseDto login(@RequestBody AuthenticationDto authenticationDto) {
 
     UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(
         authenticationDto.username(),
@@ -53,6 +53,6 @@ public class AuthenticationController {
 
     String token = tokenService.generateToken(person);
 
-    return ResponseEntity.status(HttpStatus.OK).body(new TokenResponseDto(token));
+    return new TokenResponseDto(token);
   }
 }
