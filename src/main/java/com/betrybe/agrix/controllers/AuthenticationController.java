@@ -5,8 +5,6 @@ import com.betrybe.agrix.controllers.dto.TokenResponseDto;
 import com.betrybe.agrix.models.entities.Person;
 import com.betrybe.agrix.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
