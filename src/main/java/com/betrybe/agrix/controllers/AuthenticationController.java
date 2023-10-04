@@ -37,7 +37,7 @@ public class AuthenticationController {
    * Authenticates a user and returns an authentication token.
    *
    * @param authenticationDto The authentication request DTO.
-   * @return A ResponseEntity containing the authentication token.
+   * @return The authentication token.
    */
   @PostMapping("/login")
   public TokenResponseDto login(@RequestBody AuthenticationDto authenticationDto) {
