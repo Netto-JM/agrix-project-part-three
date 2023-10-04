@@ -45,10 +45,10 @@ public class FertilizerController {
   }
 
   /**
-   * Retrieves a Fertilizer entity by its unique identifier.
+   * Retrieves a fertilizer by its unique identifier.
    *
-   * @param fertilizerId The unique identifier of the Fertilizer entity to retrieve.
-   * @return A ResponseEntity containing the retrieved Fertilizer DTO.
+   * @param fertilizerId The unique identifier of the fertilizer to retrieve.
+   * @return A FertilizerDto if the fertilizer is found.
    * @throws FertilizerNotFoundException If the fertilizer with the specified ID is not found.
    */
   @GetMapping("/{fertilizerId}")

@@ -87,7 +87,7 @@ public class FarmController {
    * Retrieves a farm by its unique identifier.
    *
    * @param farmId The unique identifier of the farm to retrieve.
-   * @return ResponseEntity containing a FarmDto if the farm is found.
+   * @return A FarmDto if the farm is found.
    * @throws FarmNotFoundException If the farm with the specified ID is not found.
    */
   @GetMapping("/{farmId}")

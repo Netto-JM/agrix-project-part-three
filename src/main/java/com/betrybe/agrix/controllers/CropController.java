@@ -90,7 +90,7 @@ public class CropController {
    * Retrieves a crop by its unique identifier.
    *
    * @param cropId The unique identifier of the crop to retrieve.
-   * @return ResponseEntity containing a CropDto if the crop is found.
+   * @return A CropDto if the crop is found.
    * @throws CropNotFoundException If the crop with the specified ID is not found.
    */
   @GetMapping("/{cropId}")
