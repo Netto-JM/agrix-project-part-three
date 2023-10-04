@@ -2,6 +2,7 @@ package com.betrybe.agrix.controllers;
 
 import com.betrybe.agrix.controllers.dto.FertilizerDto;
 import com.betrybe.agrix.models.entities.Fertilizer;
+import com.betrybe.agrix.models.entities.Person;
 import com.betrybe.agrix.services.FertilizerService;
 import com.betrybe.agrix.services.exception.FertilizerNotFoundException;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,14 +62,16 @@ public class FertilizerController {
         .orElseThrow(FertilizerNotFoundException::new);
   }
 
+  // Using authorization with @PreAuthorize and SpEL (Spring Expression Language) for test purposes.
   /**
    * Retrieves a list of all Fertilizer entities.
    *
+   * @param person The authenticated person.
    * @return A list of FertilizerDto objects representing all Fertilizer entities.
    */
   @GetMapping()
-  @Secured("ADMIN")
-  public List<FertilizerDto> getAllFertilizers() {
+  @PreAuthorize("hasAuthority('ADMIN') or #person.username matches 'NettoJM'")
+  public List<FertilizerDto> getAllFertilizers(@AuthenticationPrincipal Person person) {
     List<Fertilizer> allFertilizers = fertilizerService.getAllFertilizers();
     return allFertilizers.stream().map(FertilizerDto::fromEntity).toList();
   }
